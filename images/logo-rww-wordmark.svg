@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 50" width="380" height="50">
+  <style>
+    .wordmark {
+      font-family: 'Century Gothic', 'Gill Sans Nova', 'Trebuchet MS', 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 42px;
+      letter-spacing: -0.02em;
+    }
+    .purple { fill: #504B6D; }
+    .gold { fill: #C49A27; }
+  </style>
+  <text x="0" y="40" class="wordmark">
+    <tspan class="purple">R</tspan><tspan class="gold">e</tspan><tspan class="purple">W</tspan><tspan class="gold">ire</tspan><tspan class="purple">W</tspan><tspan class="gold">orks</tspan>
+  </text>
+</svg>
