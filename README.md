@@ -6,27 +6,27 @@ Complete static HTML site for GitHub Pages deployment.
 
 ```
 rewireworks-site/
-├── index.html              # Homepage
-├── about.html              # About / Background
-├── offer.html              # What's On Offer
-├── contact.html            # Contact (Formspree)
-├── articles.html           # Humanising Business (Articles)
-├── what-to-expect.html     # What to Expect
-├── tracked.html            # What's Tracked
-├── why-me.html             # Why Me
-├── rewire-for-you.html     # Rewire Works For You
-├── resources.html          # Resources
-├── concertina.html         # Concertina On Offer
-├── maldives.html           # Maldives Connect
-├── kyrgyzstan.html         # Kyrgyzstan Connect
-├── podcast.html            # Fearlessly Human Podcast
-├── powerskills.html        # Powerskills Framework
-├── for-fun.html            # For Fun
+├── index.html                     Home
+├── how-the-diagnostic-works.html  How It Works
+├── what-is-measured.html          What Is Measured
+├── advance-access.html            Advance Access (info page)
+├── advance-access-form.html       Advance Access application form
+├── behind-the-diagnostic.html     About / founder page
+├── ask-a-question-first.html      General enquiry form
+├── contact-us.html                Contact page (3-column layout)
 ├── css/
-│   └── style.css           # Main stylesheet
+│   └── style.css                  All styling — one file, no preprocessor
 ├── js/
-│   └── main.js             # Interactivity
-└── images/                 # Add your images here
+│   └── main.js                    Nav, card expand/collapse, image rotation, form validation, scroll reveal
+└── images/
+    ├── logo-rww-wordmark.svg      Nav logo
+    ├── logo-rww-full.png          Home page hero logo
+    ├── logo-rww-monogram.png      Favicon
+    ├── Home.jpg                   Home page card image
+    ├── How-it-works.jpg           How It Works page card image
+    ├── what-is-measured.jpg       What Is Measured page card image
+    ├── Advance-access.jpg         Advance Access page card image
+    └── behind-the-diagnostic.jpg  Behind the Diagnostic page card image
 ```
 
 ## 🚀 GitHub Pages Deployment
@@ -72,6 +72,16 @@ Open `css/style.css` and update these CSS variables at the top:
    ```html
    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
    ```
+## Forms
+
+Each form submits via Formspree:
+
+Page                                 Endpoint
+advance-access-form.html         formspree.io/f/xwvdnvqw
+ask-a-question-first.html         formspree.io/f/maqgdqjr
+contact-us.html                  formspree.io/f/mpqewlrv
+
+All three IDs belong to your Formspree account — check the dashboard there if a form stops receiving submissions.
 
 ## 🖼️ Adding Images
 
@@ -107,6 +117,25 @@ Each page has unique meta descriptions and keywords. Update the Open Graph tags 
 - Use WebP format where possible
 - Minify CSS/JS for production (optional)
 - Enable GitHub Pages caching (automatic)
+- Key behaviours to know about before editing
+
+Card images rotate automatically — don't hand-set position classes.
+Every page's expanded cards carry a class like image-left, image-right, image-top, or image-bottom in the HTML, but main.js overwrites these on every page load, cycling through top → bottom → left → right in document order (skipping any card with no-image). If you add a new card, whatever position class you type in the HTML will be replaced automatically — you don't need to think about it, but don't be surprised when it doesn't match what you wrote.
+
+Each page has exactly one image, reused across its cards. Position varies per card via the rotation above; the image itself doesn't.
+
+Two responsive breakpoints, intentionally different — don't merge them:
+
+
+900px — nav switches to the hamburger menu
+768px — card layout forces to stacked top/bottom (left/right positions are disabled below this width)
+
+
+These are split on purpose so the nav never gets squeezed into an awkward in-between zone. main.js also checks window.innerWidth <= 900 in two places (closing the mobile menu, dropdown toggles) — keep this in sync with the CSS breakpoint if you ever change one.
+
+One-image-per-card-set design rule. Cards without an image use the no-image layout class and just show text full-width — this is intentional for content like process diagrams or box grids that need the full card width, not a bug to "fix" by adding an image.
+
+Cards pair into 2-column grids automatically. Any two .card elements sharing one .cards-grid container will lay out side-by-side (.cards-grid uses CSS Grid auto-fit, minmax(300px, 1fr)) — no extra CSS needed, just wrap the cards you want paired in one grid container in the HTML.
 
 ---
 
