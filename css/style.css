@@ -193,7 +193,7 @@ body {
    HERO SECTIONS - Dark, full-width
    ============================================ */
 .hero {
-  min-height: 90vh;
+  min-height: clamp(500px, 80vh, 750px);
   display: flex;
   align-items: center;
   padding: 80px 2rem 60px;
