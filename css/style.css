@@ -51,6 +51,11 @@
      .hero and .page-hero, plus a shorter variant in .bottom-banner */
   --gradient-hero: linear-gradient(160deg, var(--near-black) 0%, var(--deep-plum) 60%, var(--slate-purple) 100%);
   --gradient-banner: linear-gradient(160deg, var(--near-black) 0%, var(--deep-plum) 100%);
+
+  /* Fixed navbar is 72px tall (see .nav-container) - hero/page-hero
+     top padding is calculated from this so they can never end up
+     shorter than the navbar again */
+  --nav-height: 72px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,7 +205,7 @@ body {
   min-height: clamp(500px, 80vh, 750px);
   display: flex;
   align-items: center;
-  padding: 80px 2rem 60px;
+  padding: calc(var(--nav-height) + 20px) 2rem 60px;
   background: var(--gradient-hero);
   color: var(--warm-white);
   position: relative;
@@ -1076,7 +1081,7 @@ body {
 
   .dropdown.active .dropdown-content { display: block; }
 
-  .hero { min-height: auto; padding: 50px 1.5rem 40px; }
+  .hero { min-height: auto; padding: calc(var(--nav-height) + 20px) 1.5rem 40px; }
   .hero h1 { font-size: 2rem; }
   .hero .subline { font-size: 1.05rem; }
   .hero-logo { max-height: 100px; }
